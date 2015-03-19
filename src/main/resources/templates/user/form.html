@@ -1,0 +1,22 @@
+<th:block xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/layout">
+	<th:block layout:fragment="title">Hello from USER LIST</th:block>
+	
+	<th:block layout:fragment="content">
+		<form action="#" th:action="@{/user/add}" th:object="${user}" method="post">
+			<div>
+				<label th:text="#{user.firstname}">Firstname</label>
+				<input type="text" th:field="*{firstname}" />
+			</div>		
+		
+		
+			<div>
+				<label th:text="#{user.lastname}">Lastname</label>
+				<input type="text" th:field="*{lastname}" />
+			</div>
+			
+			<button type="submit" th:text="#{btn.submit}"></button>
+		</form>
+	</th:block>
+</th:block>
