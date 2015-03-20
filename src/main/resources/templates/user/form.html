@@ -20,14 +20,14 @@
 					</div>
 
 					<div class="form-group">
-						<label>Select1</label> <select class="form-control">
-							<option>nieco</option>
-							<option>nieco2</option>
+						<label th:text="#{user.type}">Select1</label>
+                        <select class="form-control" th:field="*{type}">
+							<option th:value="${usertype}" th:text="#{|user.type.${usertype}|}" th:each="usertype : ${T(sk.anext.msi.bo.UserType).values()}"></option>
 						</select>
 					</div>
 
 					<div class="form-group">
-						<input type="checkbox" /> <label>Checkbox</label>
+						<input type="checkbox" th:field="*{enabled}" /> <label th:text="#{user.enabled}">Enabled</label>
 					</div>
 
 					<input type="submit" th:value="#{btn.submit}" class="btn btn-info" />
