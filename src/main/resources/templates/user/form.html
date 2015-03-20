@@ -1,22 +1,39 @@
 <th:block xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 	layout:decorator="layout/layout">
-	<th:block layout:fragment="title">Hello from USER LIST</th:block>
-	
+	<th:block layout:fragment="title">Hello from USER FORM</th:block>
+
 	<th:block layout:fragment="content">
-		<form action="#" th:action="@{/user/add}" th:object="${user}" method="post">
-			<div>
-				<label th:text="#{user.firstname}">Firstname</label>
-				<input type="text" th:field="*{firstname}" />
-			</div>		
-		
-		
-			<div>
-				<label th:text="#{user.lastname}">Lastname</label>
-				<input type="text" th:field="*{lastname}" />
+		<h3>Form Components</h3>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form action="#" th:action="@{/user/add}" th:object="${user}"
+					method="post" role="form">
+					<div class="form-group">
+						<label th:text="#{user.name}">Name - String(2-20)</label> <input type="text"
+							class="form-control" th:field="*{name}" />
+					</div>
+
+					<div class="form-group">
+						<label th:text="#{user.age}">Age - Integer</label> <input type="text"
+							class="form-control" th:field="*{age}" />
+					</div>
+
+					<div class="form-group">
+						<label>Select1</label> <select class="form-control">
+							<option>nieco</option>
+							<option>nieco2</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<input type="checkbox" /> <label>Checkbox</label>
+					</div>
+
+					<input type="submit" th:value="#{btn.submit}" class="btn btn-info" />
+
+				</form>
 			</div>
-			
-			<button type="submit" th:text="#{btn.submit}"></button>
-		</form>
+		</div>
 	</th:block>
 </th:block>

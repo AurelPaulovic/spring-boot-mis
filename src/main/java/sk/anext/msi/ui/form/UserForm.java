@@ -6,25 +6,24 @@ import javax.validation.constraints.Size;
 public class UserForm {
     @NotNull
     @Size(min = 1, max = 10)
-    private String firstname;
+    private String name;
     
     @NotNull
-    @Size(min = 1, max = 20)
-    private String lastname;
-    
-    public String getFirstname() {
-        return firstname;
+    private Integer age;
+
+    public String getName() {
+        return name;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastname() {
-        return lastname;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }
