@@ -1,4 +1,4 @@
-package sk.anext.wicketexample.startup;
+package sk.anext.wicketexample;
 
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;

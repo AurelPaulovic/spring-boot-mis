@@ -1,7 +1,6 @@
 package sk.anext.wicketexample.pages;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
@@ -16,23 +15,20 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.validation.validator.RangeValidator;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
 
 import sk.anext.wicketexample.components.BootstrapFeedbackPanel;
 import sk.anext.wicketexample.components.ErrorDecorationBehavior;
+import sk.anext.wicketexample.service.ExampleService;
 
 public class ExamplePage extends WebPage 
 {
-	private static final List<String> dropDownCoices = new ArrayList<String>();
-	static {
-		dropDownCoices.add("Choice #1");
-		dropDownCoices.add("Choice #2");
-		dropDownCoices.add("Choice #3");
-		dropDownCoices.add("Choice #4");
-		dropDownCoices.add("Choice #5");
-		dropDownCoices.add("Choice #6");
-	}
+	
+	@SpringBean
+	private ExampleService exampleService;
 	
 	private String stringRangeInput;
 	private Integer integerInput;
@@ -41,12 +37,12 @@ public class ExamplePage extends WebPage
 	
 	
 	public ExamplePage() {
-		init();
+		initPage();
 	}
 		
-	private void init() {
+	private void initPage() {
 		
-		stringDropDown = dropDownCoices.get(0);
+		stringDropDown = exampleService.getDropDownChoiceData().get(0);
 		
 		Form<ExamplePage> form = new Form<ExamplePage>("exampleForm", new CompoundPropertyModel<ExamplePage>(this));
 		add(form);
@@ -63,7 +59,7 @@ public class ExamplePage extends WebPage
 				.setRequired(true)
 				.add(new ErrorDecorationBehavior("error")));
 		
-		form.add(new DropDownChoice<String>("stringDropDown", dropDownCoices));
+		form.add(new DropDownChoice<String>("stringDropDown", exampleService.getDropDownChoiceData()));
 		
 		form.add(new CheckBox("booleanCheckBox"));
 		
@@ -91,12 +87,26 @@ public class ExamplePage extends WebPage
 		
 		
 		
-		add(new ListView<String>("list", dropDownCoices) {
+		
+		add(new ListView<String>("list", getModel()) {
 			protected void populateItem(ListItem<String> item) 
 			{
 				item.add(new Label("value1", item.getIndex()));
 				item.add(new Label("value2", item.getModelObject()));
 			};
 		});
+		
+	}
+	
+	private IModel<ArrayList<String>> getModel()
+	{
+		return new LoadableDetachableModel<ArrayList<String>>() {
+			
+			@Override
+			protected ArrayList<String> load() {
+				
+				return (ArrayList)exampleService.getDropDownChoiceData();
+			}
+		};
 	}
 }

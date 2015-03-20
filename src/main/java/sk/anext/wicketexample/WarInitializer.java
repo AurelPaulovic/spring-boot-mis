@@ -1,4 +1,4 @@
-package sk.anext.wicketexample.startup;
+package sk.anext.wicketexample;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;

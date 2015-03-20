@@ -1,4 +1,4 @@
-package sk.anext.wicketexample.startup;
+package sk.anext.wicketexample;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,7 @@ import sk.anext.wicketexample.pages.ExamplePage;
 @Component
 @EnableAutoConfiguration
 @ComponentScan
+@SpringBootApplication
 public class WicketWebApplication extends WebApplication {
 	private final static Logger logger = LoggerFactory.getLogger(WicketWebApplication.class);
 	@Autowired
