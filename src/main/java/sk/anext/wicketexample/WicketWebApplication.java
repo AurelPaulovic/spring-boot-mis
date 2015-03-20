@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
+import sk.anext.wicketexample.pages.AnotherPage;
 import sk.anext.wicketexample.pages.ExamplePage;
 
 /**
@@ -61,5 +62,6 @@ public class WicketWebApplication extends WebApplication {
 		super.init();
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this, applicationContext));
 		mountPage("/example.html", ExamplePage.class);
+		mountPage("/another.html", AnotherPage.class);
 	}
 }

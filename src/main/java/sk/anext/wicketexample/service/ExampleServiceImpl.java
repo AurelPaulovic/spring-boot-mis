@@ -30,6 +30,18 @@ public class ExampleServiceImpl implements ExampleService {
 		tableData.add("Data #4");
 		tableData.add("Data #5");
 		tableData.add("Data #6");
+		tableData.add("Data #7");
+		tableData.add("Data #8");
+		tableData.add("Data #9");
+		tableData.add("Data #10");
+		tableData.add("Data #11");
+		tableData.add("Data #12");
+		tableData.add("Data #13");
+		tableData.add("Data #14");
+		tableData.add("Data #15");
+		tableData.add("Data #16");
+		tableData.add("Data #17");
+		tableData.add("Data #18");
 	}
 
 	@Override
