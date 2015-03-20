@@ -48,6 +48,17 @@ public class ExampleServiceImpl implements ExampleService {
 	public List<String> getDropDownChoiceData() {
 		return dropDownChoiceData;
 	}
+	
+	@Override
+	public List<String> getDropDownChoiceData(String input) {
+		
+		if(input.equals(dropDownChoiceData.get(2)))
+		{
+			return tableData;
+		}
+		
+		return dropDownChoiceData;
+	}
 
 	@Override
 	public List<String> getTableData() {

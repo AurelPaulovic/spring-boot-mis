@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.ajax.markup.html.navigation.paging.AjaxPagingNavigator;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
@@ -40,6 +42,7 @@ public class AnotherPage extends WebPage
 	private String stringRangeInput;
 	private Integer integerInput;
 	private String stringDropDown;
+	private String stringDropDown2;
 	private boolean booleanCheckBox;
 	
 	
@@ -51,7 +54,8 @@ public class AnotherPage extends WebPage
 		
 		stringDropDown = exampleService.getDropDownChoiceData().get(0);
 		
-		Form<AnotherPage> form = new Form<AnotherPage>("exampleForm", new CompoundPropertyModel<AnotherPage>(this));
+		final Form<AnotherPage> form = new Form<AnotherPage>("exampleForm", new CompoundPropertyModel<AnotherPage>(this));
+		form.setOutputMarkupId(true);
 		add(form);
 		
 		final FeedbackPanel feedbackPanel = new BootstrapFeedbackPanel("feedbackPanel");
@@ -66,7 +70,20 @@ public class AnotherPage extends WebPage
 				.setRequired(true)
 				.add(new ErrorDecorationBehavior("error")));
 		
-		form.add(new DropDownChoice<String>("stringDropDown", exampleService.getDropDownChoiceData()));
+		DropDownChoice<String> dropDown1 = new DropDownChoice<String>("stringDropDown", exampleService.getDropDownChoiceData());
+		form.add(dropDown1);
+		
+		dropDown1.add(new AjaxFormComponentUpdatingBehavior("onchange")
+		{
+			@Override
+			protected void onUpdate(AjaxRequestTarget target) 
+			{
+				target.add(form);
+			}
+		});
+		
+		
+		form.add(new DropDownChoice<String>("stringDropDown2", getChoice2Model()));
 		
 		form.add(new CheckBox("booleanCheckBox"));
 		
@@ -141,6 +158,17 @@ public class AnotherPage extends WebPage
 			protected ArrayList<String> load() {
 				
 				return (ArrayList)exampleService.getTableData();
+			}
+		};
+	}
+	
+	private IModel<ArrayList<String>> getChoice2Model()
+	{
+		return new Model<ArrayList<String>>()
+		{
+			@Override
+			public ArrayList<String> getObject() {
+				return (ArrayList)exampleService.getDropDownChoiceData(stringDropDown);
 			}
 		};
 	}
