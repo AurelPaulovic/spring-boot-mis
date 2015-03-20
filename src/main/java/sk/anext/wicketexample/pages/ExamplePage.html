@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<div class="jumbotron">
+			<h1><wicket:message key="mainLabel">[MAIN LABEL]</wicket:message></h1>
+			<p><wicket:message key="mainDescription">[MAIN DESCRIPTION]</wicket:message></p>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<h3><wicket:message key="formComponentsLabel">[FORM COMPONENTS]</wicket:message></h3>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<form role="form" wicket:id="exampleForm">
+						
+							<div wicket:id="feedbackPanel" />
+						
+							<div class="form-group">
+								<label><wicket:message key="input1Label">[INPUT1]</wicket:message></label>
+								<input type="text" class="form-control" wicket:id="stringRangeInput"/>
+							</div>
+							
+							<div class="form-group">
+								<label><wicket:message key="input2Label">[INPUT2]</wicket:message></label>
+								<input type="text" class="form-control" wicket:id="integerInput"/>
+							</div>
+							
+							<div class="form-group">
+								<label><wicket:message key="select1Label">[SELECT1]</wicket:message></label>
+								<select class="form-control" wicket:id="stringDropDown">
+									<option>nieco</option>
+									<option>nieco2333</option>
+								</select>
+							</div>
+							
+							<div class="form-group">
+								<input type="checkbox" wicket:id="booleanCheckBox" />
+								<label><wicket:message key="checkBoxLabel">[CHECKBOX]</wicket:message></label>
+							</div>
+							
+							<input type="button" value="Submit" class="btn btn-info" wicket:id="submitButton" />
+							
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<h3><wicket:message key="reusableComponentsLabel">[REUSABLE COMPONENTS]</wicket:message></h3>
+				
+				<wicket:container wicket:id="reusable1" />
+				
+				<div wicket:id="reusable2" />
+			</div>
+			<div class="col-sm-4">
+				<h3><wicket:message key="elseLabel">[ELSE]</wicket:message></h3>
+				<div class="table-responsive" >
+					<table class="table table-striped table-max-width-md" style="text-align: left">
+						<tr>
+							<th>
+								<strong><wicket:message key="tableColumn1Label">[COLUMN 1 LABEL]</wicket:message></strong>
+							</th>
+							<th>
+								<strong><wicket:message key="tableColumn2Label">[COLUMN 2 LABEL]</wicket:message></strong>
+							</th>
+						</tr>
+						<tr wicket:id="list">
+							<td wicket:id="value1">[VALUE 1]</td>
+							<td wicket:id="value2">[VALUE 2]</td>	
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
