@@ -32,11 +32,6 @@ public class UserController {
         }
         
         log.info("no errors");
-        return "redirect:/user/list";
-    }
-    
-    @RequestMapping(value = "list")
-    public String showList() {
-        return "user/list";
+        return "redirect:/user/add";
     }
 }

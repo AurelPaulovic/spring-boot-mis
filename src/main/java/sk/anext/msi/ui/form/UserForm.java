@@ -8,13 +8,13 @@ import javax.validation.constraints.Size;
 import sk.anext.msi.bo.UserType;
 
 public class UserForm {
-    @NotNull
-    @Size(min = 1, max = 10)
+    @NotNull(message = "Name must be non-empty")
+    @Size(min = 1, max = 20, message = "Name must be between {min} and {max} characters long")
     private String name;
     
-    @NotNull
-    @Min(0)
-    @Max(120)
+    @NotNull(message = "Age must be non-empty")
+    @Min(value = 0, message = "The user must be older than {value}")
+    @Max(value = 120, message = "The user must be younger than {value}")
     private Integer age;
     
     @NotNull
