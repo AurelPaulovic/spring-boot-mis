@@ -1,0 +1,17 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+	<div class="table-responsive">
+		<table class="table table-striped table-max-width-md"
+			style="text-align: left">
+			<thead>
+				<tr>
+					<th><strong>Name</strong></th>
+					<th><strong>Age</strong></th>
+				</tr>
+			</thead>
+			<tr th:each="user : ${userTable}">
+				<td th:text="${user.name}">John Doe</td>
+				<td th:text="${user.age}">42</td>
+			</tr>
+		</table>
+	</div>
+</th:block>

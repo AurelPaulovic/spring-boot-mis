@@ -13,16 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import sk.anext.msi.bo.User;
+import sk.anext.msi.service.UserService;
 import sk.anext.msi.ui.component.SessionPanel;
+import sk.anext.msi.ui.controller.advice.annotation.WithLayoutModel;
 import sk.anext.msi.ui.form.UserForm;
 
 @Controller
 @RequestMapping("/user")
+@WithLayoutModel
 public class UserController {
     private static final Log log = LogFactory.getLog(UserController.class);
     
     @Autowired
     private SessionPanel sessionPanel;
+    
+    @Autowired
+    private UserService userService;
     
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String showAddForm(Model model) {
@@ -38,6 +45,8 @@ public class UserController {
         }
         
         sessionPanel.incrementAddedCount();
+        userService.addUser(new User(user));
+        
         redirectAttributes.addFlashAttribute("addedUser", user);
         return "redirect:/user/add";
     }
