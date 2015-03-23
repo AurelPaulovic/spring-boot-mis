@@ -38,7 +38,7 @@ public class UserController {
         }
         
         sessionPanel.incrementAddedCount();
-        redirectAttributes.addFlashAttribute("message", "User was successfully added!");
+        redirectAttributes.addFlashAttribute("addedUser", user);
         return "redirect:/user/add";
     }
 }
