@@ -8,8 +8,8 @@ buildscript {
         }  
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	classpath 'org.springframework:springloaded:1.2.1.RELEASE'
+       classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	   classpath 'org.springframework:springloaded:1.2.1.RELEASE'
     }
 }
 
@@ -37,6 +37,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.hibernate:hibernate-validator")
+    compile("org.springframework.data:spring-data-commons")
     testCompile("org.springframework.boot:spring-boot-starter-test") 
 }
 

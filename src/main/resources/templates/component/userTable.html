@@ -1,17 +1,23 @@
 <th:block xmlns:th="http://www.thymeleaf.org">
-	<div class="table-responsive">
+	<div class="table-responsive" id="userTable" th:fragment="userTable">
 		<table class="table table-striped table-max-width-md"
 			style="text-align: left">
 			<thead>
 				<tr>
-					<th><strong>Name</strong></th>
-					<th><strong>Age</strong></th>
+					<th><strong th:text="#{userTable.name}">Name</strong></th>
+					<th><strong th:text="#{userTable.age}">Age</strong></th>
 				</tr>
 			</thead>
-			<tr th:each="user : ${userTable}">
+			<tr th:each="user : ${userTable.getContent()}">
 				<td th:text="${user.name}">John Doe</td>
 				<td th:text="${user.age}">42</td>
 			</tr>
+			
+			<tr th:if="${userTable.getContent()?.isEmpty()}">
+                <td colspan="2" class="text-center" th:text="#{userTable.noUsers(${T(sk.anext.msi.ui.controller.UserTableController).USER_TABLE_PER_PAGE})}">There are no users</td>
+			</tr>
 		</table>
+		
+		<th:block th:include="common/pagination" th:with="page=${userTable}"></th:block>
 	</div>
 </th:block>

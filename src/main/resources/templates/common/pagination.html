@@ -1,0 +1,21 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+	<nav th:if="${page.totalPages > 1}">
+		<ul class="pagination">
+			<li th:class="not ${page.hasPreviousPage} ? 'disabled'"><a
+				th:remove="${page.hasPreviousPage} ? 'none' : 'tag'"
+				th:onclick="|return Pager.goToPage('@{${#strings.escapeJavaScript(page.url)}}', ${page.number - 1}, '${_csrf.parameterName}', '${_csrf.token}')|"
+				href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+			<li th:each="item : ${page.items}"
+				th:class="${item.current} ? 'active'"><span aria-hidden="true"><a
+					href="#"
+					th:onclick="|return Pager.goToPage('@{${#strings.escapeJavaScript(page.url)}}', ${item.number}, '${_csrf.parameterName}', '${_csrf.token}')|"
+					th:remove="${item.current} ? 'tag' : 'none'"
+					th:text="${item.number}">1</a></span></li>
+			<li th:class="not ${page.hasNextPage} ? 'disabled'"><a
+				th:remove="${page.hasNextPage} ? 'none' : 'tag'"
+				th:onclick="|return Pager.goToPage('@{${#strings.escapeJavaScript(page.url)}}', ${page.number + 1}, '${_csrf.parameterName}', '${_csrf.token}')|"
+				href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+			</a></li>
+		</ul>
+	</nav>
+</th:block>

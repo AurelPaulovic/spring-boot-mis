@@ -6,6 +6,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import sk.anext.msi.bo.User;
@@ -25,8 +28,14 @@ public class UserServiceImpl implements UserService {
         users.add(user);
     }
     
-    synchronized public List<User> getUsers() {
-        // let us pretend shallow copy is enough
-        return new ArrayList<User>(this.users);
+    synchronized public Page<User> getUsers(Pageable pageable) {
+        int pageNumber =  pageable.getPageNumber(); 
+        int size = pageable.getPageSize();
+        int listSize = this.users.size();
+        
+        int idxStart = (pageNumber * size <= listSize) ? pageNumber * size : 0;
+        int idxEnd = (idxStart + size <= listSize) ? idxStart + size : listSize;
+        
+        return new PageImpl<User>(this.users.subList(idxStart, idxEnd), pageable, listSize);
     }
 }
