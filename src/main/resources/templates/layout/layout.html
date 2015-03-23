@@ -35,13 +35,8 @@
 			</div>
 			<div class="col-sm-4">
 				<h3>Reusable Components</h3>
-				<div class="panel panel-default">
-					<div class="panel-body">Nejaky text</div>
-				</div>
-
-				<div class="panel panel-default">
-					<div class="panel-body">Ta ista komponenta</div>
-				</div>
+				<th:block th:include="component/sessionPanel">Nejaky text</th:block>
+				<th:block th:include="component/sessionPanel">Ta ista komponenta</th:block>
 			</div>
 			<div class="col-sm-4">
 				<h3>Else</h3>

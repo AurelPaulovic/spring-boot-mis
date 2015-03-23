@@ -7,13 +7,16 @@
 		<h3>Form Components</h3>
 		<div class="panel panel-default">
 			<div class="panel-body">
+				<div th:if="${message}" class="alert alert-info" th:text="${message}" role="alert">Info message</div>
+
 				<form action="#" th:action="@{/user/add}" th:object="${user}"
 					method="post" role="form">
 					<div class="form-group">
 						<label th:text="#{user.name}">Name - String(2-20)</label> <input
 							type="text" class="form-control" th:field="*{name}" />
 
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('name')}">
+						<div class="alert alert-danger" role="alert"
+							th:if="${#fields.hasErrors('name')}">
 							<span class="glyphicon glyphicon-exclamation-sign"
 								aria-hidden="true"></span> <span class="sr-only">Error:</span>
 							<th:block th:errors="*{name}">error msg</th:block>
@@ -23,12 +26,13 @@
 					<div class="form-group">
 						<label th:text="#{user.age}">Age - Integer</label> <input
 							type="text" class="form-control" th:field="*{age}" />
-							
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('age')}">
-                            <span class="glyphicon glyphicon-exclamation-sign"
-                                aria-hidden="true"></span> <span class="sr-only">Error:</span>
-                            <th:block th:errors="*{age}">error msg</th:block>
-                        </div>
+
+						<div class="alert alert-danger" role="alert"
+							th:if="${#fields.hasErrors('age')}">
+							<span class="glyphicon glyphicon-exclamation-sign"
+								aria-hidden="true"></span> <span class="sr-only">Error:</span>
+							<th:block th:errors="*{age}">error msg</th:block>
+						</div>
 					</div>
 
 					<div class="form-group">
