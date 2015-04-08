@@ -1,5 +1,12 @@
 <th:block xmlns:th="http://www.thymeleaf.org">
 	<div class="panel panel-default">
-		<div class="panel-body">This user session added <span th:remove="tag" th:text="${@SessionPanel.userAddedCount}">0</span> users</div>
+		<div class="panel-body">
+			This user added <span th:remove="tag"
+				th:text="${@SessionPanel.userAddedCount}">0</span> users
+		</div>
+		<div class="panel-body">
+			Database has <span th:remove="tag"
+				th:text="${@NeoUserService.countOfUsers}">0</span> users
+		</div>
 	</div>
 </th:block>
